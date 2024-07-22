@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# statusbar
+
+while true; do
+   xsetroot -name " << 🌥️$(curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo) << 🖥️CPU: $(~/.config/scripts/cpuusage) << 💽 RAM: $(~/.config/scripts/ramusage) << 💾 Storage: $(~/.config/scripts/storage) << 🔊 Audio: $(~/.config/scripts/volume)%  << 🕓$( date +"%F %R" )"
+   sleep 1s    # Update time every minute
+done &
+
+
+# autostart
+
+/usr/bin/gnome-keyring-daemon --start
+export SSH_AUTH_SOCK
+export GPG_AGENT_INFO
+export GNOME_KEYRING_CONTROL
+export GNOME_KEYRING_PID
+picom --config ~/.config/picom.conf &
+/usr/bin/keepassxc -platform xcb &
+#nextcloud
+nitrogen --restore &
+
+

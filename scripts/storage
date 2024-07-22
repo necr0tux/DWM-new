@@ -1,0 +1,8 @@
+#!/bin/sh
+
+DISK_SIZE_TOTAL=$(df -kh . | tail -n1 | awk '{print $2}')
+DISK_SIZE_FREE=$(df -kh . | tail -n1 | awk '{print $4}')
+DISK_PERCENT_USED=$(df -kh . | tail -n1 | awk '{print $5}')
+
+echo ${DISK_SIZE_FREE} "available" "|" ${DISK_SIZE_TOTAL} "total" #${DISK_PERCENT_USED} "used"
+
